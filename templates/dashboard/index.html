@@ -1,0 +1,204 @@
+{% extends 'partials/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+
+
+<!-- <div class="row mt-1 pt-3">
+    <div class="col-md-3">
+        <div class="border p-3 shadow">
+            <h4>Add Data</h4>
+            <hr>
+            <form method="GET">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input class="btn btn-success btn-block" type="submit" value="Add">
+            </form>
+        </div>
+    </div> -->
+
+    <center class="row"><h1><b> Weekly Updates </b></h1></center>
+ 
+    <div class='row'>
+        
+
+    <div class="col-md-4">
+        <canvas id="myChart" width="200" height="160" style="background-color: #f00;"></canvas>
+        </div>
+        <div class="col-md-4">
+        <canvas id="mypie" width="200" height="160"  style="background-color:green;"></canvas>
+</div>
+
+<div class="col-md-4">
+    <canvas id="my" width="200" height="160"  style="background-color:yellow;"></canvas>
+</div>
+</div>
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [{% for data in data %} '{{ data.country }}', {% endfor %}],
+            datasets: [{
+                label: 'Sales',
+                data: [{% for data in data %} {{ data.population }}, {% endfor %}],
+                backgroundColor: 
+                'white',
+                hoverBackgroundColor: "green",
+                    borderColor:'black',
+                        borderWidth: 2
+            }]
+                },
+            options: {
+                scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: "white",
+                        fontSize: 12,
+                        stepSize: 1,
+                        beginAtZero: true
+                    },
+                    
+                    gridLines: {
+                            display:false
+                            } 
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: "white",
+                        fontSize: 12,
+                        stepSize: 1,
+                        beginAtZero: true
+                    },
+                    
+                    gridLines: {
+                            display:false
+                            } 
+                }]
+            }
+            }
+            });
+
+
+
+
+
+            var ctx = document.getElementById('my').getContext('2d');
+            var my = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [{% for data in data %} '{{ data.country }}', {% endfor %}],
+            datasets: [{
+                label: 'Completed Takes',
+                data: [{% for data in data %} {{ data.population }}, {% endfor %}],
+                backgroundColor:'white',
+                               hoverBackgroundColor: [
+          "grey",
+          "pink",
+          "green",
+          "red",
+          "orange",
+          "royalblue",
+          "blue"
+          
+
+        ],
+                    borderColor:'black',
+                        borderWidth: 2,
+                        
+            }]
+                },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "black",
+                            beginAtZero: true
+                        },
+
+                            gridLines: {
+                            display:false
+                            } 
+                    }]
+                }
+            }
+            });
+
+
+
+            var ctx = document.getElementById('mypie').getContext('2d');
+            var mypie = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [{% for data in data %} '{{ data.country }}', {% endfor %}],
+            datasets: [{
+                label: 'Email Subscriptions',
+                data: [{% for data in data %} {{ data.population }}, {% endfor %}],
+                backgroundColor:'white',
+                hoverBackgroundColor: [
+          "grey",
+          "pink",
+          "green",
+          "red",
+          "orange",
+          "royalblue",
+          "blue"
+          
+
+        ],
+                    borderColor:'black',
+                        borderWidth: 2
+            }]
+                },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "white",
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                display:false
+            } 
+                    }],
+                    xAxes: [{
+                    ticks: {
+                        fontColor: "white",
+                        fontSize: 12,
+                        stepSize: 1,
+                        beginAtZero: true
+                    },
+                    
+                    gridLines: {
+                            display:false
+                            } 
+                }]
+               
+
+                }
+            }
+
+
+         
+            });
+
+
+
+        </script>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
