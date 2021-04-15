@@ -26,7 +26,7 @@ SECRET_KEY = '8+bj8@wk47i9r=30n*k5m+dc_&hf7q$^dmko1(80(4jh)giq=='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["graphsdjango.herokuapp.com"]
 
 
 # Application definition
