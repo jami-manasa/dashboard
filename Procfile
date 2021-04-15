@@ -1,1 +1,1 @@
-web: guNicorn dashboard.wsgi
+web: gunicorn dashboard.wsgi
